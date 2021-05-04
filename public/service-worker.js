@@ -14,6 +14,7 @@ const FILES_TO_CACHE = [
 ];
 
 self.addEventListener("install",  (evt) => {
+    //
     evt.waitUntil(
         caches.open(CACHE_NAME)
         .then(cache => {
@@ -39,10 +40,13 @@ self.addEventListener("activate", function (evt) {
             );
         })
     );
+
     self.clients.claim();
 });
 
+
 self.addEventListener("fetch", function (evt) {
+
     evt.respondWith(
         caches.open(CACHE_NAME)
         .then ((cache) => {
@@ -52,4 +56,5 @@ self.addEventListener("fetch", function (evt) {
             })
         })
     );
-});
+})
+

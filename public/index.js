@@ -134,20 +134,22 @@ function sendTransaction(isAdding) {
       amountEl.value = "";
     }
   })
+  //fires whe the other promises fail and there is no connection to database
   .catch(err => {
     // fetch failed, so save in indexed db
     saveRecord(transaction);
 
-    // clear form
     nameEl.value = "";
     amountEl.value = "";
   });
 }
 
 document.querySelector("#add-btn").onclick = function() {
+  event.preventDefault();
   sendTransaction(true);
 };
 
 document.querySelector("#sub-btn").onclick = function() {
+  event.preventDefault();
   sendTransaction(false);
 };
